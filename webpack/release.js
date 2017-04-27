@@ -2,8 +2,8 @@ var webpack = require('webpack');
 var client = require('./client');
 var server = require('./server');
 
-client.debug = server.debug = false;
-client.devtool = server.devtool = null;
+// client.debug = server.debug = false;
+client.devtool = server.devtool = false;
 
 // Add uglify and dedupe
 client.plugins.push(new webpack.optimize.UglifyJsPlugin({

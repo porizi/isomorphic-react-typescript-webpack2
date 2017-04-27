@@ -35,7 +35,7 @@ module.exports = function make(options) {
 
   var config = {
     context: path.join(__dirname, '../'),
-    debug: options.debug || true,
+    // debug: options.debug || true,
     devtool: options.devtool || (isClient ? 'cheap-module-eval-source-map' : 'eval-source-map'),
     target: options.target || 'web',
     entry: entry,
@@ -49,16 +49,16 @@ module.exports = function make(options) {
     },
 
     resolve: {
-      modulesDirectories: ['./node_modules', './src/components'],
-      extensions: ['', '.js', '.ts', '.tsx', '.css']
+      modules: ['./node_modules', './src/components'],
+      extensions: ['.js', '.ts', '.tsx', '.css']
     },
 
     module: {
-      loaders:
+      rules:
       [
         {
           test: /\.css$/,
-          loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+          loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
         },
         {
           test: /\.tsx?$/,
